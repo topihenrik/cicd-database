@@ -27,6 +27,8 @@ jobs:
     services:
       postgres:
         image: postgres
+        env:
+          POSTGRES_PASSWORD: postgres
         ports:
           - 5432:5432
     steps:
@@ -46,7 +48,7 @@ jobs:
         run: |
           touch .env.test
           echo DB_USER="stockingtest" >> .env.test
-          echo DB_PASSWORD="" >> .env.test
+          echo DB_PASSWORD="postgres" >> .env.test
           echo DB_HOST="localhost" >> .env.test
           echo DB_PORT="5432" >> .env.test
           echo DB_DATABASE="StocKingTest" >> .env.test
