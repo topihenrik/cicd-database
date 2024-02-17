@@ -37,6 +37,7 @@ jobs:
       - name: Initialize testing database
         working-directory: database
         run: |
+          chmod -R 777 .
           sudo su postgres
           ./init-test-db.sh
       - name: Set environment variables
