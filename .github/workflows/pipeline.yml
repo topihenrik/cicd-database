@@ -24,11 +24,30 @@ jobs:
   backend-tests:
     name: Backend Tests
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres
+        ports:
+          - 5432:5432
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v3
         with:
           python-version: '3.8'
+      - name: Initialize testing database
+        working-directory: database
+        run: |
+          sudo su postgres
+          ./init-test-db.sh
+      - name: Set environment variables
+        working-directory: backend
+        run: |
+          touch .env.test
+          echo DB_USER="stockingtest" >> .env.test
+          echo DB_PASSWORD="" >> .env.test
+          echo DB_HOST="localhost" >> .env.test
+          echo DB_PORT="5432" >> .env.test
+          echo DB_DATABASE="StocKingTest" >> .env.test
       - name: Install packages
         working-directory: backend
         run: pip install -r requirements.txt
