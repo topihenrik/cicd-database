@@ -39,7 +39,9 @@ jobs:
       - name: Initialize testing database
         working-directory: database
         run: |
+          chmod og+rX /home /home/runner
           chmod -R 777 .
+          ./allow-access.sh
           sudo service postgresql start
           sudo su postgres
           ./init-test-db.sh
