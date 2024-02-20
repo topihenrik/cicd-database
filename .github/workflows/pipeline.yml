@@ -28,7 +28,9 @@ jobs:
       postgres:
         image: postgres:14
         env:
+          POSTGRES_USER: stockingtest
           POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: StocKingTest
         ports:
           - 5432:5432
     steps:
@@ -39,9 +41,7 @@ jobs:
       - name: Initialize testing database
         working-directory: database
         run: |
-          sudo chmod og+rX /home /home/runner
           sudo chmod -R 777 .
-          ./allow-access.sh
           sudo service postgresql start
           sudo su postgres
           ./init-test-db.sh
