@@ -48,11 +48,14 @@ jobs:
       - name: Initialize testing database
         working-directory: database
         run: |
-          sudo chmod og+rX /home /home/runner
-          sudo chmod -R 777 .
-          sudo service postgresql start
-          sudo su postgres
-          ./init-test-db.sh
+          yarn
+          node init-test-db.js
+#        run: |
+#          sudo chmod og+rX /home /home/runner
+#          sudo chmod -R 777 .
+#          sudo service postgresql start
+#          sudo su postgres
+#          ./init-test-db.sh
       - name: Set environment variables
         working-directory: backend
         run: |
