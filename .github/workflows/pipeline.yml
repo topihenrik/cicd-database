@@ -28,10 +28,9 @@ jobs:
       postgres:
         image: postgres:14
         env:
-          POSTGRES_USER: stockingtest
+          POSTGRES_USER: runner
           POSTGRES_PASSWORD: postgres
           POSTGRES_DB: StocKingTest
-          POSTGRES_HOST_AUTH_METHOD: trust
         ports:
           - 5432:5432
     steps:
@@ -51,7 +50,7 @@ jobs:
         working-directory: backend
         run: |
           touch .env.test
-          echo DB_USER="stockingtest" >> .env.test
+          echo DB_USER="runner" >> .env.test
           echo DB_PASSWORD="postgres" >> .env.test
           echo DB_HOST="localhost" >> .env.test
           echo DB_PORT="5432" >> .env.test
