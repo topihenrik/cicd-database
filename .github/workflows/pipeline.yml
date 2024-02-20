@@ -68,6 +68,7 @@ jobs:
       - name: Install packages
         working-directory: backend
         run: |
+          python3 --version
           pip install setuptools
           pip install -r requirements.txt
       - name: Test backend
