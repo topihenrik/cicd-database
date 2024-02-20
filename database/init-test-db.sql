@@ -1,3 +1,3 @@
-CREATE USER runner;
+CREATE USER stockingtest;
 
-CREATE DATABASE "StocKingTest" owner runner;
+CREATE DATABASE "StocKingTest" owner stockingtest;
