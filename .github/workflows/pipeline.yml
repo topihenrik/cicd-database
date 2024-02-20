@@ -24,24 +24,25 @@ jobs:
   backend-tests:
     name: Backend Tests
     runs-on: ubuntu-latest
-#    services:
-#      postgres:
-#        image: postgres:14
-#        env:
-#          POSTGRES_USER: runner
-#          POSTGRES_PASSWORD: postgres
-#          POSTGRES_DB: StocKingTest
-#          POSTGRES_HOST_AUTH_METHOD: "trust"
-#        ports:
-#          - 5432:5432
-#        options: >-
-#          --health-cmd pg_isready
-#          --health-interval 10s
-#          --health-timeout 5s
-#          --health-retries 5
+    services:
+      postgres:
+        image: postgres:14
+        env:
+          POSTGRES_USER: runner
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: StocKingTest
+          POSTGRES_HOST_AUTH_METHOD: "trust"
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v3
+      - uses: actions/setup-node@v3
         with:
           python-version: '3.8'
       - name: Initialize testing database
